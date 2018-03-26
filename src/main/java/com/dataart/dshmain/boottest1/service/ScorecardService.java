@@ -7,7 +7,6 @@ import java.util.UUID;
 
 public interface ScorecardService {
     void insert(Scorecard scorecard);
-    void update(UUID id, String content);
-    // List<Scorecard> findAll();
+    void update(String id, String content);
     List<Scorecard> findByLayoutNative(String name);
 }

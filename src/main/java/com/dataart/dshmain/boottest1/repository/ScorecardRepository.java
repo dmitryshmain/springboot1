@@ -5,9 +5,8 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface ScorecardRepository extends PagingAndSortingRepository<Scorecard, UUID> {
+public interface ScorecardRepository extends PagingAndSortingRepository<Scorecard, String> {
 
     @Query("{'content.layout': ?0}")
     List<Scorecard> findByLayoutNative(String name);

@@ -5,31 +5,40 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
-import java.util.UUID;
 
 @Document(collection = "scorecard")
 public class Scorecard {
-    @Id private UUID scorecardId;
-    private String content;
-    @Version private Long version;
+    @Id
+    @NotNull
+    private String id;
 
-    public Scorecard(UUID scorecardId, String content) {
-        this.scorecardId = scorecardId;
+    @NotNull
+    private String content;
+
+    @Version
+    private Long version;
+
+    public Scorecard(){}
+
+    public Scorecard(String id, String content) {
+        this.id = id;
         this.content = content;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getContent() {
         return content;
     }
 
-    public UUID getScorecardId() {
-        return scorecardId;
-    }
-
-    public void setScorecardId(UUID scorecardId) {
-        this.scorecardId = scorecardId;
-    }
     public void setContent(String content) {
         this.content = content;
     }
@@ -39,20 +48,21 @@ public class Scorecard {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Scorecard scorecard = (Scorecard) o;
-        return Objects.equals(scorecardId, scorecard.scorecardId) &&
-                Objects.equals(content, scorecard.content);
+        return Objects.equals(id, scorecard.id);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(scorecardId, content);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Scorecard{" +
-                "scorecardId=" + scorecardId +
+                "id='" + id + '\'' +
+                ", content='" + content + '\'' +
+                ", version=" + version +
                 '}';
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.UUID;
 
 @Component
 @Slf4j
@@ -29,11 +28,11 @@ public class DefaultScorecardService implements ScorecardService {
     @Override
     public void insert(Scorecard scorecard) {
         ops.insert(scorecard);
-        log.info("Inserted scorecard: " + ops.findOne(new Query(where("scorecardId").is(scorecard.getScorecardId())), Scorecard.class));
+        log.info("Inserted scorecard: " + ops.findOne(new Query(where("id").is(scorecard.getId())), Scorecard.class));
     }
 
     @Override
-    public void update(UUID id, String content) {
+    public void update(String id, String content) {
         Scorecard scorecard = ops.findById(id, Scorecard.class);
         scorecard.setContent(content);
         ops.save(scorecard);

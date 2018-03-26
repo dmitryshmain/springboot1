@@ -19,10 +19,9 @@ public class InitMongoCollections implements ApplicationListener<ContextRefreshe
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        Scorecard scorecard = new Scorecard(UUID.randomUUID(), "{'layout': 'test'}");
+        Scorecard scorecard = new Scorecard(null, "{'layout': 'test'}");
         scorecardService.insert(scorecard);
-        scorecardService.update(scorecard.getScorecardId(), "{'layout': 'test2'}");
-
-        scorecardService.findByLayoutNative("test2");
+        scorecardService.update(scorecard.getId(), "{'layout': 'test2'}");
+        //scorecardService.findByLayoutNative("test2");
     }
 }
