@@ -11,7 +11,6 @@ import java.util.Objects;
 @Document(collection = "scorecard")
 public class Scorecard {
     @Id
-    @NotNull
     private String id;
 
     @NotNull
