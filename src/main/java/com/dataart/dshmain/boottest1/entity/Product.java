@@ -1,29 +1,35 @@
 package com.dataart.dshmain.boottest1.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
-@Document(collection = "scorecard")
-public class Scorecard {
+@Document(collection = "product")
+public class Product {
     @Id
     private String id;
 
-    @NotNull
-    private String content;
+    private String name;
 
     @Version
-    private Long version;
+    private Long version = 0L;
 
-    public Scorecard(){}
+    public Product(){}
 
-    public Scorecard(String id, String content) {
+    public Product(String id, String name) {
         this.id = id;
-        this.content = content;
+        this.name = name;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     public String getId() {
@@ -34,20 +40,20 @@ public class Scorecard {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getName() {
+        return name;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Scorecard scorecard = (Scorecard) o;
-        return Objects.equals(id, scorecard.id);
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
     }
 
     @Override
@@ -58,9 +64,9 @@ public class Scorecard {
 
     @Override
     public String toString() {
-        return "Scorecard{" +
+        return "Product{" +
                 "id='" + id + '\'' +
-                ", content='" + content + '\'' +
+                ", name='" + name + '\'' +
                 ", version=" + version +
                 '}';
     }

@@ -10,9 +10,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @EnableAutoConfiguration
 @EnableConfigurationProperties
 @EnableEurekaClient
-public class BootTest1Application {
+public class BootTest1ProductServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BootTest1Application.class, args);
+		SpringApplication.run(BootTest1ProductServiceApplication.class, args);
 	}
 }

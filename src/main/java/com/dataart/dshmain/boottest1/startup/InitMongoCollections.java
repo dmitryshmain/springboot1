@@ -1,7 +1,7 @@
 package com.dataart.dshmain.boottest1.startup;
 
-import com.dataart.dshmain.boottest1.entity.Scorecard;
-import com.dataart.dshmain.boottest1.service.ScorecardService;
+import com.dataart.dshmain.boottest1.entity.Product;
+import com.dataart.dshmain.boottest1.service.ProductService;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -9,17 +9,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class InitMongoCollections implements ApplicationListener<ContextRefreshedEvent> {
 
-    private ScorecardService scorecardService;
+    private ProductService productService;
 
-    public InitMongoCollections(ScorecardService scorecardService) {
-        this.scorecardService = scorecardService;
+    public InitMongoCollections(ProductService productService) {
+        this.productService = productService;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        Scorecard scorecard = new Scorecard(null, "{'layout': 'test'}");
-        scorecardService.insert(scorecard);
-        scorecardService.update(scorecard.getId(), "{'layout': 'test2'}");
-        //scorecardService.findByLayoutNative("test2");
+        Product product = new Product(null, "Salo");
+        productService.insert(product);
+        productService.update(product.getId(), "Vodka");
+        productService.findByName("Vodka");
     }
 }
