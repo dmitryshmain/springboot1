@@ -17,6 +17,12 @@ public class MongoConfiguration {
     @Value("${spring.data.mongodb.database}")
     private String database;
 
+    @Value("${spring.data.mongodb.host}")
+    private String host;
+
+    @Value("${spring.data.mongodb.port}")
+    private Integer port;
+
     @Bean
     public MongoOperations mongoTemplate() {
         return new MongoTemplate(mongoClient(), database);
@@ -24,6 +30,6 @@ public class MongoConfiguration {
 
     @Bean
     public MongoClient mongoClient() {
-        return new MongoClient();
+        return new MongoClient(host, port);
     }
 }

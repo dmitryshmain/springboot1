@@ -1,5 +1,6 @@
 package com.dataart.dshmain.boottest1.controller;
 
+import com.dataart.dshmain.boottest1.entity.Product;
 import com.dataart.dshmain.boottest1.properties.ExternalProperties;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -41,6 +42,11 @@ public class TestController {
         props.add("Configuration prop2:" + propsConfig.getProp2());
         props.add("Configuration prop3:" + propsConfig.getProp3());
         return props;
+    }
+
+    public void test() {
+        //List<Product> products = new ArrayList<>();
+        //products.stream().
     }
 
 }

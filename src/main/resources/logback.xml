@@ -19,13 +19,39 @@
         </rollingPolicy>
 
         <encoder>
-            <pattern>%date{dd/MM/yyyy; HH:mm:ss.SSS} %-5level %logger{35} - %msg%n</pattern>
+            <pattern>[%X{}], %date{dd/MM/yyyy; HH:mm:ss.SSS} %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>127.0.0.1:5000</destination>
+        <keepAliveDuration>5 minutes</keepAliveDuration>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <mdc />
+                <timestamp />
+                <message />
+                <loggerName />
+                <logLevel />
+                <threadName />
+                <stackTrace />
+                <logstashMarkers />
+                <pattern>
+                    <pattern>
+                        {
+                        "serviceName": "product-service"
+                        }
+                    </pattern>
+                </pattern>
+
+            </providers>
         </encoder>
     </appender>
 
     <root level="INFO">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="MAIN" />
+        <appender-ref ref="STASH" />
     </root>
 
 </configuration>
